@@ -1,0 +1,66 @@
+# AI智能文档核验系统 - LangChain 重构版依赖库
+# ==========================================
+
+# LangChain 核心库
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-deepseek>=0.1.0
+langchain-openai>=0.2.0
+langchain-chroma>=0.1.0
+langchain-huggingface>=0.1.0
+langgraph>=0.2.0
+
+# 基础库
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+sympy>=1.11.0
+
+# PDF处理与解析
+pdfplumber>=0.10.0
+pymupdf>=1.23.0
+PyMuPDF>=1.23.0
+pdfminer.six>=20221105
+camelot-py>=0.10.1
+Pillow>=10.0.0
+
+# Web应用框架
+streamlit>=1.28.0
+fastapi>=0.115.0
+uvicorn>=0.30.0
+python-multipart>=0.0.9
+
+# 图像识别与处理
+# paddlepaddle>=2.5.0
+# paddleocr>=2.7.0
+
+# 嵌入模型
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# 向量数据库
+chromadb>=0.4.0
+
+# 数据处理
+python-dotenv>=1.0.0
+beautifulsoup4>=4.12.0
+
+# 日志与工具
+loguru>=0.7.0
+requests>=2.31.0
+tqdm>=4.66.0
+
+# MinerU PDF解析（备注：当前PyPI无法安装，需要单独下载）
+# mineru>=1.0.0
+
+# 开发与测试
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# ==========================================
+# 安装说明:
+# 1. 基础安装: pip install -r requirements_langchain.txt
+# 2. 如果需要GPU加速，请单独安装对应CUDA版本的torch
+# 3. PaddleOCR可能需要额外安装: pip install paddlepaddle (CPU版) 或 paddlepaddle-gpu (GPU版)
+# 4. LangSmith (调试): pip install langsmith

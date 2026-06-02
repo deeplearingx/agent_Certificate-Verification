@@ -1,0 +1,158 @@
+# Environment and local tooling
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+.python-version
+.vscode/
+.idea/
+.claude/
+.codex
+.agents/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Runtime caches, model weights, and generated artifacts
+.hf_cache/
+models/
+vector_db/
+certificates/
+datasets/
+runs/
+output/
+reports/
+final_reports/
+audit_reports/
+testout_v2/
+local_pdf/
+local_md/
+local_json/
+local_json_parsed/
+pdf/
+pdfs/
+data/
+memory/
+env_pack/
+D*/
+d*/
+
+# Large/raw/generated file types
+*.log
+*.tmp
+*.pdf
+*.zip
+*.bin
+*.pt
+*.onnx
+*.pickle
+*.sqlite
+*.sqlite3
+*.db
+*.xlsx
+*.xls
+
+# Keep source docs and test fixtures, but ignore generated root reports.
+/full_conversion_output.txt
+/*report*.md
+/*报告*.md
+/*总结*.md
+/*分析*.md
+/*方案*.md
+/*计划*.md
+/*文档*.md
+!/README.md
+!/agents.md
+!/docs/**/*.md
+!/notes/**/*.md
+!/langchain_app/**/*.md
+*.json
+!tests/**/*.json
+!config/**/*.json
+
+# Superseded root migration notes; formal docs live under docs/.
+/FIXES_SUMMARY.md
+/PROGRESS_SUMMARY.md
+/certificate_format_analysis.md
+/fix_summary.md
+/langchain_migration_plan.md
+/langchain_refactor_guide.md
+/langchain_refactor_plan.md
+/LlamaIndex应用分析.md
+/md_parser优化报告.md
+/parser_bug_fix_report.md
+
+# LangGraph app local-only artifacts
+langchain_app/.git/
+langchain_app/.git_nested_backup/
+langchain_app/output/
+langchain_app/test.pdf
+
+# Backups and obsolete experiment folders
+backups/
+CNAS解析/
+pdf_md_json/
+
+# Legacy root Streamlit apps and migration experiments
+/app1.py
+/app2.py
+/demo_new_api.py
+/debug_parser.py
+/install_and_test.py
+/simple_test.py
+/smoke_test.py
+/verify_lc_architecture.py
+/test_*.py
+
+# Legacy PDF/JSON parser experiments. The current mainline uses pdf_md.py and
+# md_parser_no_llm.py through langchain_app/services/parsing.py.
+/best_pdf_parser.py
+/camelot_parser.py
+/paddleocr_parser.py
+/pdf_parser.py
+/pdf_parser_备份.py
+/pdf_to_json_improved.py
+/pdfplumber_direct_parser.py
+/pdfplumber_to_json.py
+/parse_local_md_to_json.py
+/parse_test.py
+/md_parser.py
+
+# Legacy parameter-check copies and superseded variants.
+/param_check copy*.py
+/param_check_corrupted.py
+/param_check_new.py
+/param_check_refactored.py
+/param_check_备份.py
+
+# Legacy standalone Chinese scripts kept locally for reference only.
+/CNSA数据库搭建.py
+/cnsa检索.py
+/旧cnsa数据库搭建.py
+/pdf解析.py
+/pdf解析+构建向量数据库.py
+/依据核验*.py
+/依据检索模块1.py
+/信息完整性核验.py
+/建议校准周期核验.py
+/校准地点核验.py
+/温度核验.py
+/测试PDF识别.py
+/测试新PDF.py
+/检索仪器名称.py
+/*向量数据库搭建.py

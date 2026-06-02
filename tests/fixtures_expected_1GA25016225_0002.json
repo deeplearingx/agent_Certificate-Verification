@@ -1,0 +1,225 @@
+{
+  "properties": {
+    "证书列表": {
+      "items": {
+        "properties": {
+          "证书类型": "校准证书",
+          "证书状态": "正常",
+          "证书编号": "1GA25016225-0002",
+          "委托单位": "华为技术有限公司",
+          "委托方地址": "广东省深圳市龙岗区坂田华为基地",
+          "仪器名称": "频率计",
+          "型号规格": "SYN5636",
+          "制造商": "西安同步电子科技",
+          "机身号": "210917812",
+          "管理号": "M2312006795",
+          "接收日期": "2025-12-24",
+          "校准日期": "2025-12-24",
+          "签发日期": "2026-01-14",
+          "建议校准周期": "12个月(12 months)",
+          "核验人": "邹苏阳",
+          "校准人": "黃俊杰",
+          "温度": "(24.2~24.5)℃",
+          "湿度": "53%",
+          "校准地点": "东莞松山湖高新技术产业开发区环湖路9号华为溪流背坡村G7负一楼库房",
+          "是否CNAS": "是",
+          "认可实验室": "CNAS L13344",
+          "CNAS": "L13344",
+          "校准依据": [
+            "JJF 2196-2025"
+          ],
+          "结论": "所校准项目符合技术要求"
+        }
+      }
+    }
+  },
+  "依据参数_中间数据": [
+    {
+      "测量值": "2.1 相对频率偏差(Relative Frequency Deviation)",
+      "数据明细": {
+        "输出频率 (Frequency)": "10 MHz",
+        "相对频率偏差 (Relative Frequency Deviation)": "1.0×10-9",
+        "Urel (k=2)": "1×10-10"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "频率 (Frequency)": "100 kHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "频率 (Frequency)": "10 MHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "频率 (Frequency)": "350 MHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "频率 (Frequency)": "100 kHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "频率 (Frequency)": "10 MHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "3 输入灵敏度检查(Input Sensitivity Check)(高灵敏度模式)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "频率 (Frequency)": "350 MHz",
+        "灵敏度 (Sensitivity)": "4 mV"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "100.000000 kHz",
+        "指示值 (Indicated)": "100.000000 kHz",
+        "误差 (Error)": "0.000 Hz",
+        "允许误差 (Limit)": "±0.008 Hz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.004 Hz"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "10.0000000 MHz",
+        "指示值 (Indicated)": "10.0000000 MHz",
+        "误差 (Error)": "0.0000 kHz",
+        "允许误差 (Limit)": "±0.0008 kHz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.0003 kHz"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "350.000000 MHz",
+        "指示值 (Indicated)": "349.999998 MHz",
+        "误差 (Error)": "-0.002 kHz",
+        "允许误差 (Limit)": "±0.028 kHz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.012 kHz"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "100.000000 kHz",
+        "指示值 (Indicated)": "100.000000 kHz",
+        "误差 (Error)": "0.000 Hz",
+        "允许误差 (Limit)": "±0.008 Hz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.004 Hz"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "10.0000000 MHz",
+        "指示值 (Indicated)": "10.0000000 MHz",
+        "误差 (Error)": "0.0000 kHz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.0003 kHz"
+      }
+    },
+    {
+      "测量值": "4 频率测量误差(Frequency Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "350.000000 MHz",
+        "指示值 (Indicated)": "349.999999 MHz",
+        "误差 (Error)": "-0.001 kHz",
+        "允许误差 (Limit)": "±0.028 kHz",
+        "结论 (Pass/Fail)": "P",
+        "U (k=2)": "0.012 kHz"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "10.00000000 μs",
+        "指示值 (Indicated)": "10.0000001 μs",
+        "误差 (Error)": "0.0001 ns",
+        "U (k=2)": "0.0003 ns"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "100.0000000 ns",
+        "指示值 (Indicated)": "100.000001 ns",
+        "误差 (Error)": "0.000001 ns",
+        "U (k=2)": "0.000004 ns"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "1",
+        "标准值 (Reference)": "5.0000000 ns",
+        "指示值 (Indicated)": "5.000000 ns",
+        "误差 (Error)": "0.000000 ns",
+        "U (k=2)": "0.0000002 ns"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "10.00000000 μs",
+        "指示值 (Indicated)": "10.0000001 μs",
+        "误差 (Error)": "0.0001 ns",
+        "U (k=2)": "0.0003 ns"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "100.0000000 ns",
+        "指示值 (Indicated)": "100.000001 ns",
+        "误差 (Error)": "0.000001 ns",
+        "U (k=2)": "0.000004 ns"
+      }
+    },
+    {
+      "测量值": "5 周期测量误差(Period Measurement Error)",
+      "数据明细": {
+        "通道 (Channel)": "2",
+        "标准值 (Reference)": "5.0000000 ns",
+        "指示值 (Indicated)": "5.000000 ns",
+        "误差 (Error)": "0.000000 ns",
+        "U (k=2)": "0.0000002 ns"
+      }
+    }
+  ]
+}
