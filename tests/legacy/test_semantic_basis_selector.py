@@ -1,4 +1,4 @@
-from core.semantic_basis_selector import (
+from langchain_app.checks.parameter.semantic import (
     FirstCandidateDecider,
     infer_kb_capability,
     infer_param_semantics,

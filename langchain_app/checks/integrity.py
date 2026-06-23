@@ -18,6 +18,7 @@ from pathlib import Path
 # 本地导入
 from langchain_app.utils import get_app_config, AppConfig, coerce_app_config
 from langchain_app.core import LLMClient, VerificationReport
+from langchain_app.services.field_normalizer import load_and_normalize_certificate_json
 
 
 # ========== 配置系统 ==========
@@ -155,16 +156,11 @@ def check_certificate_integrity(
     """
     cfg = get_config(cfg)
 
-    # 1. 读取 JSON
-    with open(json_file, "r", encoding="utf-8") as f:
-        raw_data = json.load(f)
-
-    # 2. 路径提取 (增加容错)
-    try:
-        props = raw_data["properties"]["证书列表"]["items"]["properties"]
-    except KeyError:
+    # 1. 读取 JSON 并归一化同义字段（canonical keys 只在出口和入口处归一）
+    raw_data, props = load_and_normalize_certificate_json(json_file)
+    if not props:
         print("[警告] JSON 结构解析失败，尝试直接读取根目录...")
-        props = raw_data
+        props = raw_data if isinstance(raw_data, dict) else {}
 
     # ================= 新增 CNAS 阻断逻辑 =================
     is_cnas = normalize_cnas_flag(props)
@@ -185,17 +181,17 @@ def check_certificate_integrity(
         return report_text
     # ======================================================
 
-    # 3. 提取并规范化字段 (只有通过 CNAS 检查才继续执行)
-    instrument_name = normalize(props.get("INSTRUMENT_NAME") or props.get("仪器名称"))
-    model_name = normalize(props.get("型号") or props.get("型号规格"))
-    manufacturer = normalize(props.get("制造厂") or props.get("制造商"))
-    serial_no = normalize(props.get("机身号") or props.get("序列号"))
+    # 3. 提取并规范化字段（canonical keys 已由 load_and_normalize_certificate_json 保证唯一）
+    instrument_name = normalize(props.get("仪器名称"))
+    model_name = normalize(props.get("型号规格"))
+    manufacturer = normalize(props.get("制造商"))
+    serial_no = normalize(props.get("序列号"))
     manage_no = normalize(props.get("管理号"))
-    client_name = normalize(props.get("委托单位名称") or props.get("委托单位") or props.get("客户名称"))
+    client_name = normalize(props.get("委托单位"))
     cert_no = normalize(props.get("证书编号"), default="unknown")
 
     temp_raw = normalize(props.get("温度"))
-    hum_raw = normalize(props.get("相对湿度") or props.get("湿度"))
+    hum_raw = normalize(props.get("相对湿度"))
 
     report_cycle = normalize(props.get("建议校准周期"))
     criteria_list = props.get("校准依据") or []

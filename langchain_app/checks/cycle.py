@@ -21,6 +21,7 @@ from datetime import datetime
 from langchain_app.utils import get_app_config, AppConfig, coerce_app_config
 from langchain_app.core import LLMClient, VerificationReport
 from langchain_app.retrieval import CycleRetrievalService, create_cycle_retrieval_service
+from langchain_app.services.field_normalizer import load_and_normalize_certificate_json
 
 try:
     from pydantic import BaseModel
@@ -285,14 +286,12 @@ def check_cycle_reasonableness(
     """
     cfg = get_config(cfg)
 
-    with open(json_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    props = data["properties"]["证书列表"]["items"]["properties"]
+    data, props = load_and_normalize_certificate_json(json_file)
 
     receive_date = props.get("接收日期", "")
     calibrate_date = props.get("校准日期", "")
 
-    client_name = props.get("委托单位名称", "") or props.get("委托单位", "") or props.get("客户名称", "未知客户")
+    client_name = props.get("委托单位", "") or "未知客户"
     instrument_name = props.get("仪器名称", "")
     model_name = props.get("型号规格", "")
     criterion_list = props.get("校准依据", [])
@@ -301,9 +300,9 @@ def check_cycle_reasonableness(
     date_check_result = check_date_logic(receive_date, calibrate_date)
 
     temp = props.get("温度", "")
-    rh = props.get("相对湿度") or props.get("湿度", "")
+    rh = props.get("相对湿度", "")
     temp_in = props.get("温度_内页", "")
-    rh_in = props.get("相对湿度_内页") or props.get("湿度_内页", "")
+    rh_in = props.get("相对湿度_内页", "")
 
     env_consistency_result = check_env_consistency(temp, rh, temp_in, rh_in)
 

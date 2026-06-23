@@ -4,7 +4,7 @@ import os
 import pytest
 from openai import OpenAI
 
-from config.settings import get_app_config
+from langchain_app.utils import get_app_config
 
 
 def _client_and_model():

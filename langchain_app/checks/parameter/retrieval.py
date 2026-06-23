@@ -19,6 +19,12 @@ from typing import Any, Dict, List, Optional
 import chromadb
 
 from langchain_app.utils import get_app_config, AppConfig
+from langchain_app.retrieval.types import (
+    Diagnostic,
+    DiagnosticCode,
+    RetrievalResponse,
+    response_from_legacy_dicts,
+)
 from .parser_domain import _filter_kb_entries_multidimensional
 from .rules import PLACEHOLDER_INSTRUMENT_NAMES
 
@@ -243,6 +249,7 @@ def search_calibration_data(
         )
         uncertainty = ensure_uncertainty(raw_u, doc_text)
         entry = {
+            "page_content": doc_text,
             "文档内容": doc_text,
             "measured": _infer_measured_label(doc_text, metadata),
             "measure_range_text": _first_present(metadata, "测量范围", "范围", "measure_range_text"),
@@ -296,6 +303,90 @@ def search_calibration_data(
         ]
     working_pool.sort(key=lambda item: item[0], reverse=True)
     return [entry for _, entry in working_pool[:topk]]
+
+
+def search_calibration_response(
+    query_text: str = "",
+    cfg: Optional[AppConfig] = None,
+    topk: int = 20,
+    instrument_name: Optional[str] = None,
+    embedder_obj=None,
+    **kwargs,
+) -> RetrievalResponse:
+    """Canonical entry point returning RetrievalResponse with diagnostic codes.
+
+    Wraps the legacy search_calibration_data() so new call sites can branch on
+    diagnostic.code rather than guessing from len(items).
+    """
+    cfg = get_config(cfg)
+    db_dir = str(getattr(cfg, "cnas_db_dir", "") or "")
+    collection = str(getattr(cfg, "cnas_collection", "") or "")
+    criterion_norm = _extract_criterion_norm(query_text or str(kwargs.get("query", "")))
+
+    if db_dir and not Path(db_dir).exists():
+        return RetrievalResponse(
+            query=query_text,
+            hits=[],
+            diagnostic=Diagnostic(
+                code=DiagnosticCode.DB_MISSING,
+                message=f"vector_db path missing: {db_dir}",
+            ),
+            db_dir=db_dir,
+            collection=collection,
+            topk=topk,
+        )
+
+    try:
+        items = search_calibration_data(
+            query_text=query_text,
+            cfg=cfg,
+            topk=topk,
+            instrument_name=instrument_name,
+            embedder_obj=embedder_obj,
+            **kwargs,
+        )
+    except Exception as exc:
+        message = str(exc)
+        if "collection" in message.lower() and "exist" in message.lower():
+            code = DiagnosticCode.COLLECTION_MISSING
+        else:
+            code = DiagnosticCode.UNEXPECTED_ERROR
+        return RetrievalResponse(
+            query=query_text,
+            hits=[],
+            diagnostic=Diagnostic(code=code, message=message),
+            db_dir=db_dir,
+            collection=collection,
+            topk=topk,
+        )
+
+    if not items:
+        if criterion_norm:
+            diagnostic = Diagnostic(
+                code=DiagnosticCode.NO_SAME_BASIS,
+                message=f"no entry matches basis {criterion_norm}",
+            )
+        else:
+            diagnostic = Diagnostic(
+                code=DiagnosticCode.LOW_SIMILARITY,
+                message="no hits returned",
+            )
+        return RetrievalResponse(
+            query=query_text,
+            hits=[],
+            diagnostic=diagnostic,
+            db_dir=db_dir,
+            collection=collection,
+            topk=topk,
+        )
+
+    return response_from_legacy_dicts(
+        query=query_text,
+        items=items,
+        db_dir=db_dir,
+        collection=collection,
+        topk=topk,
+    )
 
 
 def _extract_text_from_source(source: Dict[str, Any], keys: List[str]) -> str:

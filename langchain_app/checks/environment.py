@@ -20,6 +20,7 @@ from pathlib import Path
 from langchain_app.utils import get_app_config, AppConfig, coerce_app_config
 from langchain_app.core import LLMClient, VerificationReport
 from langchain_app.retrieval import TemperatureRetrievalService, create_temperature_retrieval_service
+from langchain_app.services.field_normalizer import load_and_normalize_certificate_json
 
 
 # ========== 配置系统 ==========
@@ -159,14 +160,11 @@ def check_environment(
     """
     cfg = get_config(cfg)
 
-    with open(json_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    props = data["properties"]["证书列表"]["items"]["properties"]
+    data, props = load_and_normalize_certificate_json(json_file)
 
     instrument_name = props.get("仪器名称", "")
     temp_text = props.get("温度", "")
-    humidity_text = props.get("相对湿度") or props.get("湿度", "")
+    humidity_text = props.get("相对湿度", "")
     criteria_list = props.get("校准依据", [])
 
     current_temp = extract_numbers_from_str(temp_text)

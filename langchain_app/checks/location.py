@@ -26,6 +26,7 @@ from langchain_app.utils import get_app_config, AppConfig, coerce_app_config
 from langchain_app.core import LLMClient, VerificationReport
 from langchain_app.retrieval import AddressRetrievalService, create_address_retrieval_service
 from langchain_app.retrieval import CnasRetrievalService, create_cnas_retrieval_service
+from langchain_app.services.field_normalizer import load_and_normalize_certificate_json
 
 
 # ========== 配置系统 ==========
@@ -406,15 +407,14 @@ def verify_calibration_location(
 # ========== JSON 解析 ==========
 
 def read_json_props(json_file: str) -> Dict[str, Any]:
-    with open(json_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data["properties"]["证书列表"]["items"]["properties"]
+    _, props = load_and_normalize_certificate_json(json_file)
+    return props
 
 
 def get_json_inputs_from_props(props: Dict[str, Any]) -> Tuple[str, List[str], str]:
-    instrument_name = props.get("INSTRUMENT_NAME") or props.get("仪器名称") or "N/A"
+    instrument_name = props.get("仪器名称") or "N/A"
     criteria_list = props.get("校准依据", []) or []
-    location_text = (props.get("校准地点") or props.get("校准地址") or props.get("地点") or "")
+    location_text = props.get("校准地点") or ""
 
     if isinstance(location_text, (list, dict)):
         location_text = json.dumps(location_text, ensure_ascii=False)

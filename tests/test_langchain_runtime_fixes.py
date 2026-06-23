@@ -79,15 +79,14 @@ def test_create_initial_state_coerces_legacy_runtime_namespace(tmp_path):
     assert state.runtime_cfg is runtime_cfg
 
 
-def test_legacy_pipeline_module_reexports_canonical_functions():
-    legacy_pipeline = importlib.import_module("core.pipeline")
+def test_canonical_pipeline_module_exports_runtime_functions():
     canonical_pipeline = importlib.import_module("langchain_app.core.pipeline")
 
-    assert legacy_pipeline.PipelineHooks is canonical_pipeline.PipelineHooks
-    assert legacy_pipeline.run_verification is canonical_pipeline.run_verification
-    assert legacy_pipeline.load_shared_embedder is canonical_pipeline.load_shared_embedder
-    assert legacy_pipeline.pdf_to_md_first_step is canonical_pipeline.pdf_to_md_first_step
-    assert legacy_pipeline.json_cache_needs_refresh is canonical_pipeline.json_cache_needs_refresh
+    assert canonical_pipeline.PipelineHooks
+    assert canonical_pipeline.run_verification
+    assert canonical_pipeline.load_shared_embedder
+    assert canonical_pipeline.pdf_to_md_first_step
+    assert canonical_pipeline.json_cache_needs_refresh
 
 
 def test_active_entries_use_canonical_runtime_exports():

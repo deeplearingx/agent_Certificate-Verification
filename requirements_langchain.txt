@@ -1,66 +1,88 @@
-# AI智能文档核验系统 - LangChain 重构版依赖库
-# ==========================================
+# AI 智能文档核验系统 - LangGraph/LangChain 主线依赖
+# ==================================================
+#
+# 当前主线代码位于 langchain_app/。
+# 安装命令:
+#   pip install -r requirements_langchain.txt
+#
+# 说明:
+# - 本文件面向当前 LangGraph/LangChain 主线运行和默认测试。
+# - 历史脚本依赖不默认纳入；需要时按 scripts_by_part/ 或 无关/ 中脚本单独补装。
+# - MinerU 是完整 PDF -> Markdown 解析链路的核心依赖，体积较大，安装时间可能较长。
 
-# LangChain 核心库
-langchain>=0.3.0
-langchain-core>=0.3.0
-langchain-community>=0.3.0
-langchain-deepseek>=0.1.0
-langchain-openai>=0.2.0
-langchain-chroma>=0.1.0
-langchain-huggingface>=0.1.0
-langgraph>=0.2.0
 
-# 基础库
-pandas>=2.0.0
-numpy>=1.24.0
-scipy>=1.10.0
-sympy>=1.11.0
+# LangGraph / LangChain 核心
+# --------------------------------------------------
+langchain>=1.0,<2.0
+langchain-core>=1.0,<2.0
+langchain-community>=0.4,<1.0
+langchain-deepseek>=1.0,<2.0
+langchain-openai>=1.0,<2.0
+langchain-chroma>=1.0,<2.0
+langchain-huggingface>=1.0,<2.0
+langgraph>=1.0,<2.0
 
-# PDF处理与解析
-pdfplumber>=0.10.0
-pymupdf>=1.23.0
-PyMuPDF>=1.23.0
-pdfminer.six>=20221105
-camelot-py>=0.10.1
-Pillow>=10.0.0
 
-# Web应用框架
+# LLM、配置与数据模型
+# --------------------------------------------------
+pydantic>=2.0,<3.0
+openai>=1.0,<3.0
+python-dotenv>=1.0.0
+protobuf>=5.0,<7.0
+
+
+# Web/API
+# --------------------------------------------------
 streamlit>=1.28.0
 fastapi>=0.115.0
 uvicorn>=0.30.0
 python-multipart>=0.0.9
+requests>=2.31.0
 
-# 图像识别与处理
-# paddlepaddle>=2.5.0
-# paddleocr>=2.7.0
 
-# 嵌入模型
+# PDF 解析
+# --------------------------------------------------
+# PyMuPDF 的 import 名是 fitz，代码中用于 PDF 页数统计、页头探测和 page slice fallback。
+PyMuPDF>=1.23.0
+
+# MinerU 用于完整 PDF -> Markdown 主解析链路。
+mineru>=3.0,<4.0
+
+
+# Embedding / RAG / Vector DB
+# --------------------------------------------------
 sentence-transformers>=2.2.0
-torch>=2.0.0
-
-# 向量数据库
+torch>=2.0,<2.9
 chromadb>=0.4.0
 
-# 数据处理
-python-dotenv>=1.0.0
-beautifulsoup4>=4.12.0
 
-# 日志与工具
+# 基础数据处理与工具
+# --------------------------------------------------
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+beautifulsoup4>=4.12.0
 loguru>=0.7.0
-requests>=2.31.0
 tqdm>=4.66.0
 
-# MinerU PDF解析（备注：当前PyPI无法安装，需要单独下载）
-# mineru>=1.0.0
 
 # 开发与测试
+# --------------------------------------------------
 pytest>=7.0.0
 pytest-cov>=4.0.0
 
-# ==========================================
-# 安装说明:
-# 1. 基础安装: pip install -r requirements_langchain.txt
-# 2. 如果需要GPU加速，请单独安装对应CUDA版本的torch
-# 3. PaddleOCR可能需要额外安装: pip install paddlepaddle (CPU版) 或 paddlepaddle-gpu (GPU版)
-# 4. LangSmith (调试): pip install langsmith
+
+# 可选依赖
+# --------------------------------------------------
+# 旧解析实验或表格抽取脚本可能需要以下依赖；当前 langchain_app 主线默认不要求。
+# camelot-py>=0.10.1
+# pdfplumber>=0.10.0
+# pdfminer.six>=20221105
+# sympy>=1.11.0
+#
+# OCR 相关旧实验:
+# paddlepaddle>=2.5.0
+# paddleocr>=2.7.0
+#
+# LangSmith 调试:
+# langsmith>=0.1.0

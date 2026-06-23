@@ -5,7 +5,7 @@ chromadb = pytest.importorskip("chromadb")
 pytest.importorskip("sentence_transformers")
 pytest.importorskip("llama_index")
 
-from cycle_check import check_date_logic, parse_date
+from langchain_app.checks.cycle import check_date_logic, parse_date
 
 
 def test_parse_date_accepts_common_formats():

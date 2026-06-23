@@ -30,6 +30,17 @@ from .cycle import (
     search_cycle_by_instrument,
 )
 
+from .types import (
+    Diagnostic,
+    DiagnosticCode,
+    RetrievalHit,
+    RetrievalResponse,
+    hit_from_langchain_document,
+    hit_from_legacy_dict,
+    response_from_documents,
+    response_from_legacy_dicts,
+)
+
 __all__ = [
     "CnasRetrievalService",
     "create_cnas_retrieval_service",
@@ -43,4 +54,12 @@ __all__ = [
     "CycleRetrievalService",
     "create_cycle_retrieval_service",
     "search_cycle_by_instrument",
+    "Diagnostic",
+    "DiagnosticCode",
+    "RetrievalHit",
+    "RetrievalResponse",
+    "hit_from_langchain_document",
+    "hit_from_legacy_dict",
+    "response_from_documents",
+    "response_from_legacy_dicts",
 ]

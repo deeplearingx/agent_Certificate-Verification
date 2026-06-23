@@ -20,6 +20,7 @@ from typing import Optional
 
 from langchain_app.checks.parameter.contracts import parameter_contract_schema_version
 from langchain_app.core.embedding_loader import configure_torch_cuda_allocator
+from langchain_app.services.field_normalizer import normalize_certificate_json_file
 from langchain_app.services.md_parser_pipeline import md_parser_pipeline_signature
 from langchain_app.utils.runtime_cache import apply_default_windows_ai_cache_env, get_mineru_tmp_dir
 from langchain_app.utils.config import AppConfig
@@ -593,6 +594,11 @@ def parse_md_to_json(
         json_path = output_dir / md_path_obj.with_suffix(".json").name
         if not json_path.exists():
             raise FileNotFoundError(f"MD parser did not write JSON: {json_path}")
+        try:
+            normalize_certificate_json_file(json_path)
+        except Exception as exc:
+            if hooks is not None and hasattr(hooks, "emit_info"):
+                hooks.emit_info(f"字段归一化失败，保留原始 JSON: {exc}")
         return json_path
     except Exception as exc:
         if isinstance(exc, (RuntimeError, FileNotFoundError)):

@@ -5875,7 +5875,10 @@ def check_parameters(
             kb_raw_items = []
 
         kb_items = [
-            parse_kb_entry(item.get("文档内容", ""), item.get("metadata", {}))
+            parse_kb_entry(
+                item.get("page_content") or item.get("文档内容", ""),
+                item.get("metadata", {}),
+            )
             for item in kb_raw_items
         ]
 

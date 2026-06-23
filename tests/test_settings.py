@@ -1,16 +1,11 @@
-from config.settings import AppConfig as LegacyAppConfig
-from config.settings import get_app_config as legacy_get_app_config
 from langchain_app.utils import AppConfig as CanonicalAppConfig
 from langchain_app.utils import get_app_config as canonical_get_app_config
 
 
-def test_legacy_config_exports_canonical_symbols(monkeypatch, tmp_path):
+def test_canonical_config_loads_project_root(monkeypatch, tmp_path):
     monkeypatch.setenv("PROJECT_ROOT", str(tmp_path))
 
-    assert LegacyAppConfig is CanonicalAppConfig
-    assert legacy_get_app_config is canonical_get_app_config
-
-    cfg = legacy_get_app_config()
+    cfg = canonical_get_app_config()
     assert isinstance(cfg, CanonicalAppConfig)
     assert cfg.root_dir == tmp_path
 
