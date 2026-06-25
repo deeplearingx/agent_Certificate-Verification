@@ -78,9 +78,12 @@ document-verification-master/
 
 更详细的分工和接口契约见：
 
+- `docs/README.md`
+- `docs/模块需求归纳.md`
+- `docs/基础核验模块需求说明.md`
+- `docs/参数核验模块需求说明.md`
 - `langchain_app/DEVELOPMENT_ASSIGNMENT.md`
 - `langchain_app/ROOT_DIRECTORY_CLASSIFICATION.md`
-- `docs/LangGraph_小组分工与代码导览.md`
 - `langchain_app/checks/parameter/PROFILE_ARCHITECTURE.md`
 
 ## 环境准备

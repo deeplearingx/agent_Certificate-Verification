@@ -231,30 +231,16 @@ RAG 组参考脚本：
 
 当前文档：
 
-- `docs/`
+- `docs/README.md`
+- `docs/模块需求归纳.md`
+- `docs/基础核验模块需求说明.md`
+- `docs/参数核验模块需求说明.md`
 - `langchain_app/PROJECT_STRUCTURE.md`
 - `langchain_app/DEVELOPMENT_ASSIGNMENT.md`
 - `langchain_app/CODING_STANDARDS.md`
 - `langchain_app/ROOT_DIRECTORY_CLASSIFICATION.md`
 
-根目录历史说明与阶段报告目前仍保留在根目录，包括：
-
-- `技术方案文档.md`
-- `流程分析.md`
-- `项目结构分析.md`
-- `PROGRESS_SUMMARY.md`
-- `FIXES_SUMMARY.md`
-- `fix_summary.md`
-- `修复报告.md`
-- `重构检查报告.md`
-- `阶段0-3完成总结.md`
-- `阶段4-5进展总结.md`
-- `阶段4-5最终测试报告.md`
-- `阶段5完成报告.md`
-- `集成修改总结.md`
-- `需求图.png`
-
-这些主要用于汇报和追溯，不参与运行链。
+历史说明、阶段报告、面试材料、旧部署草稿和早期重构方案不再作为 `docs/` 主目录交付文档；这些材料只用于追溯，不参与当前 LangChain / LangGraph 主线运行链。
 
 ## 10. 运行产物和缓存
 
